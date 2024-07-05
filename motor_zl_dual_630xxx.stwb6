@@ -760,8 +760,7 @@
         "nominalCurrent": 18,
         "nominalDCVoltage": 24,
         "polePairs": 15,
-        "rs": 0.64,
-        "status": "success"
+        "rs": 0.64
       },
       {
         "BEmfConstant": 133,
@@ -787,8 +786,7 @@
         "nominalCurrent": 18,
         "nominalDCVoltage": 24,
         "polePairs": 15,
-        "rs": 0.64,
-        "status": "success"
+        "rs": 0.64
       }
     ],
     "connections": [
@@ -1884,6 +1882,66 @@
         "mainSensorParams": {
           "speedSensorMode": "hall"
         }
+      },
+      "busVoltageSensing_0": {
+        "ovp": {
+          "enable": true,
+          "threshold": 33,
+          "onOverVoltage": "",
+          "brake": {
+            "polarity": "",
+            "thresholdLow": "Number.NaN"
+          },
+          "ov_Disable_oc": {
+            "enableFeature": false,
+            "polarity": ""
+          }
+        },
+        "uvp": {
+          "enable": true,
+          "threshold": "Number.NaN"
+        },
+        "circuitSensing": {
+          "r1": "Number.NaN",
+          "r2": "Number.NaN",
+          "enableR3": false,
+          "r3": "Number.NaN",
+          "busVoltDiv": "Number.NaN"
+        },
+        "busVoltageDivider": "Number.NaN",
+        "samplingTime": "Number.NaN",
+        "adc_freq": "Number.NaN",
+        "enableSensing": true
+      },
+      "busVoltageSensing_1": {
+        "ovp": {
+          "enable": true,
+          "threshold": 33,
+          "onOverVoltage": "",
+          "brake": {
+            "polarity": "",
+            "thresholdLow": "Number.NaN"
+          },
+          "ov_Disable_oc": {
+            "enableFeature": false,
+            "polarity": ""
+          }
+        },
+        "uvp": {
+          "enable": true,
+          "threshold": "Number.NaN"
+        },
+        "circuitSensing": {
+          "r1": "Number.NaN",
+          "r2": "Number.NaN",
+          "enableR3": false,
+          "r3": "Number.NaN",
+          "busVoltDiv": "Number.NaN"
+        },
+        "busVoltageDivider": "Number.NaN",
+        "samplingTime": "Number.NaN",
+        "adc_freq": "Number.NaN",
+        "enableSensing": true
       }
     }
   }
