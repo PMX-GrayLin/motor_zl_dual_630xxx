@@ -1,0 +1,1890 @@
+{
+  "algorithm": "FOC",
+  "description": "",
+  "checkList": {},
+  "hardwares": {
+    "type": "INVERTER",
+    "control": {
+      "mcu": {
+        "id": "STSPIN32G4"
+      },
+      "clockSource": "internal_osc",
+      "clockFrequency": 170,
+      "connectors": [],
+      "features": [
+        {
+          "name": "USER1",
+          "type": "Button",
+          "hwVariants": [
+            {
+              "type": "PushButton",
+              "help": "",
+              "signals": {
+                "BUTTON_TRIGGER": [
+                  {
+                    "name": "PC13",
+                    "help": "",
+                    "cost": 0
+                  }
+                ]
+              },
+              "buttonTriggerEdge": "Rising Edge",
+              "buttonGpioConfig": "No Pull up - No Pull down"
+            }
+          ]
+        },
+        {
+          "name": "USER2",
+          "type": "Button",
+          "hwVariants": [
+            {
+              "type": "PushButton",
+              "help": "",
+              "signals": {
+                "BUTTON_TRIGGER": [
+                  {
+                    "name": "PB2",
+                    "help": "",
+                    "cost": 0
+                  }
+                ]
+              },
+              "buttonTriggerEdge": "Rising Edge",
+              "buttonGpioConfig": "No Pull up - No Pull down"
+            }
+          ]
+        },
+        {
+          "name": "SerialPortCommunication",
+          "type": "SerialPortCommunication",
+          "hwVariants": [
+            {
+              "type": "Uart2WiresCommunication",
+              "help": "",
+              "signals": {
+                "UART_TX": [
+                  {
+                    "name": "PA9",
+                    "help": "",
+                    "cost": 0
+                  }
+                ],
+                "UART_RX": [
+                  {
+                    "name": "PA10",
+                    "help": "",
+                    "cost": 0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Potentiometer_M1",
+          "type": "Potentiometer",
+          "hwVariants": [
+            {
+              "type": "Potentiometer",
+              "help": "",
+              "signals": {
+                "POTENTIOMETER_LEVEL": [
+                  {
+                    "name": "PC3",
+                    "help": "",
+                    "cost": 0
+                  }
+                ]
+              },
+              "potVm": 3.3,
+              "potRmax": 100000,
+              "potLevelMin": 0
+            }
+          ]
+        },
+        {
+          "name": "Potentiometer_M2",
+          "type": "Potentiometer",
+          "hwVariants": [
+            {
+              "type": "Potentiometer",
+              "help": "",
+              "signals": {
+                "POTENTIOMETER_LEVEL": [
+                  {
+                    "name": "PA4",
+                    "help": "",
+                    "cost": 0
+                  }
+                ]
+              },
+              "potVm": 3.3,
+              "potRmax": 100000,
+              "potLevelMin": 0
+            }
+          ]
+        }
+      ],
+      "hardwareFamily": "CONTROL",
+      "id": "EVSPIN32G4-DUAL",
+      "label": "EVSPIN32G4-DUAL",
+      "description": "Dual-motor demonstration board based on STSPIN32G4 and STDRIVE101",
+      "descVersion": 4,
+      "contentVersion": "1.0",
+      "compatibility": [
+        "FOC",
+        "sixStep"
+      ]
+    },
+    "power": [
+      {
+        "motorDrives": [
+          {
+            "name": "M1",
+            "minRatedVoltage": 10,
+            "maxRatedVoltage": 74,
+            "maxRatedCurrent": 17,
+            "connectorType": "None",
+            "features": [
+              {
+                "name": "CurrentSensing",
+                "type": "CurrentSensing",
+                "tRise": 310,
+                "hwVariants": [
+                  {
+                    "type": "SingleShunt_RawCurrents_SingleEnded_ExternalGain",
+                    "help": "",
+                    "shuntResistor": 0.01,
+                    "offsetNetworkAttenuation": 0.875,
+                    "opAmpGain": 8,
+                    "polarizationOffset": 1.65,
+                    "amplifyingNetworkImax": 23.57,
+                    "amplifyingNetworkVm": 3.3,
+                    "amplifyingNetworkPrating": 6,
+                    "signals": {
+                      "CURRENT_SHUNT_P": [
+                        {
+                          "name": "PA3",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "CURRENT_AMPLN": [
+                        {
+                          "name": "PC5",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "CURRENT_AMPL": [
+                        {
+                          "name": "PA2",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "SingleShunt_RawCurrents_SingleEnded_InternalGain",
+                    "help": "",
+                    "shuntResistor": 0.01,
+                    "offsetNetworkAttenuation": 0.875,
+                    "opAmpGain": 8,
+                    "polarizationOffset": 1.65,
+                    "amplifyingNetworkImax": 23.57,
+                    "amplifyingNetworkVm": 3.3,
+                    "amplifyingNetworkPrating": 6,
+                    "signals": {
+                      "CURRENT_SHUNT_P": [
+                        {
+                          "name": "PA3",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "PhaseVoltageGeneration",
+                "type": "PhaseVoltageGeneration",
+                "driverName": "G4_COMPLEX_LP_DRIVER",
+                "driverPN": "STSPIN32G4",
+                "minDeadTime": 500,
+                "maxSwitchingFreq": 100,
+                "tNoise": 500,
+                "hwVariants": [
+                  {
+                    "type": "PoweringHighAndLowSides",
+                    "deadTime": 500,
+                    "help": "",
+                    "signals": {
+                      "GD_CHU_H": [
+                        {
+                          "name": "GHS1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "GD_CHV_H": [
+                        {
+                          "name": "GHS2",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "GD_CHW_H": [
+                        {
+                          "name": "GHS3",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "GD_CHU_L": [
+                        {
+                          "name": "GLS1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "GD_CHV_L": [
+                        {
+                          "name": "GLS2",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "GD_CHW_L": [
+                        {
+                          "name": "GLS3",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "SpeedAndPositionSensing",
+                "type": "SpeedAndPositionSensing",
+                "hwVariants": [
+                  {
+                    "type": "HallEffectSensor",
+                    "help": "The solder jumpers R119, R120 and R121 on the top side of the board and close to J6 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "HALLSENSOR_H1": [
+                        {
+                          "name": "PB4",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H2": [
+                        {
+                          "name": "PB5",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H3": [
+                        {
+                          "name": "PB0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "QuadratureEncoderRelative",
+                    "help": "The solder jumpers R119, R120 and R121 on the top side of the board and close to J6 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "QENC_A": [
+                        {
+                          "name": "PB4",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_B": [
+                        {
+                          "name": "PB5",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "QuadratureEncoderAbsolute",
+                    "help": "The solder jumpers R119, R120 and R121 on the top side of the board and close to J6 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "QENC_A": [
+                        {
+                          "name": "PB4",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_B": [
+                        {
+                          "name": "PB5",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_Z": [
+                        {
+                          "name": "PB0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "VBusSensing",
+                "type": "VBusSensing",
+                "busVoltageDivider": 25.02,
+                "hwVariants": [
+                  {
+                    "type": "VBusSensing",
+                    "help": "",
+                    "signals": {
+                      "VBUS": [
+                        {
+                          "name": "PB1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "busVoltageDivider": 25.02,
+                    "busVoltageDividerR1": 72.3,
+                    "busVoltageDividerR2": 3.01
+                  }
+                ]
+              },
+              {
+                "name": "TemperatureSensing",
+                "type": "TemperatureSensing",
+                "hwVariants": [
+                  {
+                    "type": "NTCThermistor",
+                    "help": "",
+                    "v0": 1750,
+                    "t0": 50,
+                    "gain": 25,
+                    "maxSensorTemperature": 100,
+                    "signals": {
+                      "TEMPERATURE_NTC": [
+                        {
+                          "name": "PC0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ],
+            "compatibility": [
+              "FOC",
+              "sixStep"
+            ]
+          },
+          {
+            "name": "M2",
+            "minRatedVoltage": 10,
+            "maxRatedVoltage": 74,
+            "maxRatedCurrent": 17,
+            "connectorType": "None",
+            "features": [
+              {
+                "name": "CurrentSensing",
+                "type": "CurrentSensing",
+                "tRise": 310,
+                "hwVariants": [
+                  {
+                    "type": "SingleShunt_RawCurrents_SingleEnded_ExternalGain",
+                    "help": "",
+                    "shuntResistor": 0.01,
+                    "offsetNetworkAttenuation": 0.875,
+                    "opAmpGain": 8,
+                    "polarizationOffset": 1.65,
+                    "amplifyingNetworkImax": 23.57,
+                    "amplifyingNetworkVm": 3.3,
+                    "amplifyingNetworkPrating": 6,
+                    "signals": {
+                      "CURRENT_SHUNT_P": [
+                        {
+                          "name": "PA7",
+                          "help": "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101.",
+                          "cost": 10
+                        }
+                      ],
+                      "CURRENT_AMPLN": [
+                        {
+                          "name": "PA5",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "CURRENT_AMPL": [
+                        {
+                          "name": "PA6",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "SingleShunt_RawCurrents_SingleEnded_InternalGain",
+                    "help": "",
+                    "shuntResistor": 0.01,
+                    "offsetNetworkAttenuation": 0.875,
+                    "opAmpGain": 8,
+                    "polarizationOffset": 1.65,
+                    "amplifyingNetworkImax": 23.57,
+                    "amplifyingNetworkVm": 3.3,
+                    "amplifyingNetworkPrating": 6,
+                    "signals": {
+                      "CURRENT_SHUNT_P": [
+                        {
+                          "name": "PA7",
+                          "help": "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101.",
+                          "cost": 10
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "ProtectionDriver101",
+                "type": "DriverProtection",
+                "hwVariants": [
+                  {
+                    "type": "SingleErrorTrigger_FixedReference",
+                    "help": "How to enable this variant",
+                    "signals": {
+                      "DP_TRIGGER": [
+                        {
+                          "name": "PB6",
+                          "help": "Factory default.",
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "DPTriggerFilterDuration": 0,
+                    "DPSignalPolarity": "Active low"
+                  }
+                ]
+              },
+              {
+                "name": "PhaseVoltageGeneration",
+                "type": "PhaseVoltageGeneration",
+                "driverName": "STDRIVE101",
+                "driverPN": "STDRIVE101",
+                "minDeadTime": 500,
+                "maxSwitchingFreq": 100,
+                "tNoise": 500,
+                "hwVariants": [
+                  {
+                    "type": "DrivingHighSidesAndOneEnable",
+                    "deadTime": 500,
+                    "help": "",
+                    "highSideSwitchesDrivingPolarity": "Active high",
+                    "enableDrivingPolarity": "Active high",
+                    "signals": {
+                      "PWM_CHU_H": [
+                        {
+                          "name": "PA15",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHV_H": [
+                        {
+                          "name": "PB8-BOOT0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHW_H": [
+                        {
+                          "name": "PB9",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_EN": [
+                        {
+                          "name": "PB7",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "DrivingHighAndLowSides",
+                    "deadTime": 500,
+                    "help": " Remove resistors R12, R13, R14 and R9. Close R9, R15, R16, R17 with solder jumpers. In this configuration, it is not possible to use Hall sensors and quadrature encoder for motor 2 or absolute encoders.",
+                    "highSideSwitchesDrivingPolarity": "Active high",
+                    "lowSideSwitchesDrivingPolarity": "Active high",
+                    "signals": {
+                      "PWM_CHU_H": [
+                        {
+                          "name": "PA15",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHV_H": [
+                        {
+                          "name": "PB8-BOOT0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHW_H": [
+                        {
+                          "name": "PB9",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHU_L": [
+                        {
+                          "name": "PB3",
+                          "help": "R15 must be mounted - 0 ohm",
+                          "cost": 10
+                        }
+                      ],
+                      "PWM_CHV_L": [
+                        {
+                          "name": "PB4",
+                          "help": "R16 must be mounted - 0 ohm",
+                          "cost": 10
+                        }
+                      ],
+                      "PWM_CHW_L": [
+                        {
+                          "name": "PB5",
+                          "help": "R17 must be mounted - 0 ohm",
+                          "cost": 10
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "SpeedAndPositionSensing",
+                "type": "SpeedAndPositionSensing",
+                "hwVariants": [
+                  {
+                    "type": "HallEffectSensor",
+                    "help": "The solder jumpers R114, R115 and R116 on the top side of the board and close to J5 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "HALLSENSOR_H1": [
+                        {
+                          "name": "PA0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H2": [
+                        {
+                          "name": "PA1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H3": [
+                        {
+                          "name": "PB10",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "QuadratureEncoderRelative",
+                    "help": "The solder jumpers R114, R115 and R116 on the top side of the board and close to J5 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "QENC_A": [
+                        {
+                          "name": "PA0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_B": [
+                        {
+                          "name": "PA1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "QuadratureEncoderAbsolute",
+                    "help": "The solder jumpers R114, R115 and R116 on the top side of the board and close to J5 connector, allow to select the sensors supply voltage (only one solder jumper must be mounted). Refer to the documentation of the board.",
+                    "signals": {
+                      "QENC_A": [
+                        {
+                          "name": "PA0",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_B": [
+                        {
+                          "name": "PA1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ],
+                      "QENC_Z": [
+                        {
+                          "name": "PB10",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "VBusSensing",
+                "type": "VBusSensing",
+                "busVoltageDivider": 25.02,
+                "hwVariants": [
+                  {
+                    "type": "VBusSensing",
+                    "help": "",
+                    "signals": {
+                      "VBUS": [
+                        {
+                          "name": "PC1",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "busVoltageDivider": 25.02,
+                    "busVoltageDividerR1": 72.3,
+                    "busVoltageDividerR2": 3.01
+                  }
+                ]
+              },
+              {
+                "name": "TemperatureSensing",
+                "type": "TemperatureSensing",
+                "hwVariants": [
+                  {
+                    "type": "NTCThermistor",
+                    "help": "",
+                    "v0": 1750,
+                    "t0": 50,
+                    "gain": 25,
+                    "maxSensorTemperature": 100,
+                    "signals": {
+                      "TEMPERATURE_NTC": [
+                        {
+                          "name": "PC2",
+                          "help": "",
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ],
+            "compatibility": [
+              "FOC",
+              "sixStep"
+            ]
+          }
+        ],
+        "connectorTypes": [
+          "None"
+        ],
+        "hardwareFamily": "POWER",
+        "id": "EVSPIN32G4-DUAL",
+        "label": "EVSPIN32G4-DUAL",
+        "description": "Dual-motor demonstration board based on STSPIN32G4 and STDRIVE101",
+        "descVersion": 4,
+        "contentVersion": "1.0",
+        "compatibility": [
+          "FOC",
+          "sixStep"
+        ]
+      }
+    ],
+    "motor": [
+      {
+        "BEmfConstant": 133,
+        "compatibility": [
+          "FOC",
+          "sixStep"
+        ],
+        "description": "lpf 5.6 nf",
+        "friction": 125.28,
+        "hallSensor": {
+          "placementElectricalAngle": 298.5,
+          "sensorsDisplacement": 120
+        },
+        "hardwareFamily": "MOTOR",
+        "id": "userMotor.ZL_LG65ASM250_spec_56nf.json",
+        "inertia": 527.43,
+        "label": "ZL_LG65ASM250_spec_56nf",
+        "ls": 1.54,
+        "magneticStructure": {
+          "type": "SM-PMSM"
+        },
+        "maxRatedSpeed": 205,
+        "nominalCurrent": 18,
+        "nominalDCVoltage": 24,
+        "polePairs": 15,
+        "rs": 0.64,
+        "status": "success"
+      },
+      {
+        "BEmfConstant": 133,
+        "compatibility": [
+          "FOC",
+          "sixStep"
+        ],
+        "description": "lpf 5.6 nf",
+        "friction": 125.28,
+        "hallSensor": {
+          "placementElectricalAngle": 298.5,
+          "sensorsDisplacement": 120
+        },
+        "hardwareFamily": "MOTOR",
+        "id": "userMotor.ZL_LG65ASM250_spec_56nf.json",
+        "inertia": 527.43,
+        "label": "ZL_LG65ASM250_spec_56nf",
+        "ls": 1.54,
+        "magneticStructure": {
+          "type": "SM-PMSM"
+        },
+        "maxRatedSpeed": 205,
+        "nominalCurrent": 18,
+        "nominalDCVoltage": 24,
+        "polePairs": 15,
+        "rs": 0.64,
+        "status": "success"
+      }
+    ],
+    "connections": [
+      {
+        "motor": 0,
+        "power": 0,
+        "drive": 0,
+        "ctrlConn": 0
+      },
+      {
+        "motor": 1,
+        "power": 0,
+        "drive": 1,
+        "ctrlConn": 0
+      }
+    ],
+    "constrains": {
+      "connectAlgoVersion": 1,
+      "MCUParamVersion": 1,
+      "motors": [
+        {
+          "motor": "M1",
+          "features": [
+            {
+              "name": "CurrentSensing",
+              "type": "CurrentSensing",
+              "hwVariants": [
+                {
+                  "name": "SingleShunt_RawCurrents_SingleEnded_ExternalGain",
+                  "swVariants": [
+                    {
+                      "name": "SingleOPAMP",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "OPAMP1"
+                          ],
+                          "cost": 0,
+                          "signals": [
+                            {
+                              "name": "CURRENT_SHUNT_P",
+                              "pin": "PA3",
+                              "peripheral": "OPAMP1_VINP",
+                              "help": ""
+                            },
+                            {
+                              "name": "CURRENT_AMPLN",
+                              "pin": "PC5",
+                              "peripheral": "OPAMP1_VINM",
+                              "help": ""
+                            },
+                            {
+                              "name": "CURRENT_AMPL",
+                              "pin": "PA2",
+                              "peripheral": "OPAMP1_VOUT",
+                              "help": ""
+                            }
+                          ],
+                          "ADCVariants": [
+                            {
+                              "name": "SingleWire",
+                              "solutions": [
+                                {
+                                  "ip": [
+                                    "ADC1"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP1_OUT",
+                                      "pin": "PA2",
+                                      "peripheral": "ADC1_IN3",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "SingleShunt_RawCurrents_SingleEnded_InternalGain",
+                  "swVariants": [
+                    {
+                      "name": "SingleOPAMP",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "OPAMP1"
+                          ],
+                          "cost": 0,
+                          "signals": [
+                            {
+                              "name": "CURRENT_SHUNT_P",
+                              "pin": "PA3",
+                              "peripheral": "OPAMP1_VINP",
+                              "help": ""
+                            }
+                          ],
+                          "ADCVariants": [
+                            {
+                              "name": "SingleWire",
+                              "solutions": [
+                                {
+                                  "ip": [
+                                    "ADC1"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP1_OUT",
+                                      "pin": "VPOPAMP1",
+                                      "peripheral": "ADC1_IN_VPOPAMP1",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                },
+                                {
+                                  "ip": [
+                                    "ADC1"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP1_OUT",
+                                      "pin": "PA2",
+                                      "peripheral": "ADC1_IN3",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "OverCurrentProtection",
+              "type": "OverCurrentProtection",
+              "hwVariants": [
+                {
+                  "name": "SingleShunt_RawCurrents_Protection_IntRef",
+                  "swVariants": [
+                    {
+                      "name": "IndependentWires",
+                      "independentWires": {
+                        "CURRENT_SHUNT_P": [
+                          {
+                            "ip": "COMP2",
+                            "pin": "PA3",
+                            "peripheral": "COMP2_INP",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "PhaseVoltageGeneration",
+              "type": "PhaseVoltageGeneration",
+              "hwVariants": [
+                {
+                  "name": "PoweringHighAndLowSides",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "DRV1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "GD_CHU_H",
+                              "pin": "GHS1",
+                              "peripheral": "DRV1_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "GD_CHV_H",
+                              "pin": "GHS2",
+                              "peripheral": "DRV1_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "GD_CHW_H",
+                              "pin": "GHS3",
+                              "peripheral": "DRV1_CH3",
+                              "help": ""
+                            },
+                            {
+                              "name": "GD_CHU_L",
+                              "pin": "GLS1",
+                              "peripheral": "DRV1_CH1N",
+                              "help": ""
+                            },
+                            {
+                              "name": "GD_CHV_L",
+                              "pin": "GLS2",
+                              "peripheral": "DRV1_CH2N",
+                              "help": ""
+                            },
+                            {
+                              "name": "GD_CHW_L",
+                              "pin": "GLS3",
+                              "peripheral": "DRV1_CH3N",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "SpeedAndPositionSensing",
+              "type": "SpeedAndPositionSensing",
+              "hwVariants": [
+                {
+                  "name": "HallEffectSensor",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM3"
+                          ],
+                          "signals": [
+                            {
+                              "name": "HALLSENSOR_H1",
+                              "pin": "PB4",
+                              "peripheral": "TIM3_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H2",
+                              "pin": "PB5",
+                              "peripheral": "TIM3_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H3",
+                              "pin": "PB0",
+                              "peripheral": "TIM3_CH3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "QuadratureEncoderRelative",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM3"
+                          ],
+                          "signals": [
+                            {
+                              "name": "QENC_A",
+                              "pin": "PB4",
+                              "peripheral": "TIM3_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "QENC_B",
+                              "pin": "PB5",
+                              "peripheral": "TIM3_CH2",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "swVariants": [
+                    {
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM3"
+                          ],
+                          "signals": [
+                            {
+                              "name": "QENC_A",
+                              "pin": "PB4",
+                              "peripheral": "TIM3_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "QENC_B",
+                              "pin": "PB5",
+                              "peripheral": "TIM3_CH2",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ],
+                      "independentWires": {
+                        "QENC_Z": [
+                          {
+                            "ip": "GPIO",
+                            "pin": "PB0",
+                            "peripheral": "GPIO_Output",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ]
+                      },
+                      "name": "SingleTimerAndGPIOs"
+                    }
+                  ],
+                  "name": "QuadratureEncoderAbsolute"
+                }
+              ]
+            },
+            {
+              "name": "VBusSensing",
+              "type": "VBusSensing",
+              "hwVariants": [
+                {
+                  "name": "VBusSensing",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "VBUS",
+                              "pin": "PB1",
+                              "peripheral": "ADC1_IN12",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "TemperatureSensing",
+              "type": "TemperatureSensing",
+              "hwVariants": [
+                {
+                  "name": "NTCThermistor",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "TEMPERATURE_NTC",
+                              "pin": "PC0",
+                              "peripheral": "ADC1_IN6",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        },
+                        {
+                          "ip": [
+                            "ADC2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "TEMPERATURE_NTC",
+                              "pin": "PC0",
+                              "peripheral": "ADC2_IN6",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "motor": "M2",
+          "features": [
+            {
+              "name": "CurrentSensing",
+              "type": "CurrentSensing",
+              "hwVariants": [
+                {
+                  "name": "SingleShunt_RawCurrents_SingleEnded_ExternalGain",
+                  "swVariants": [
+                    {
+                      "name": "SingleOPAMP",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "OPAMP2"
+                          ],
+                          "cost": 10,
+                          "signals": [
+                            {
+                              "name": "CURRENT_SHUNT_P",
+                              "pin": "PA7",
+                              "peripheral": "OPAMP2_VINP",
+                              "help": {
+                                "en": [
+                                  "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101."
+                                ]
+                              }
+                            },
+                            {
+                              "name": "CURRENT_AMPLN",
+                              "pin": "PA5",
+                              "peripheral": "OPAMP2_VINM",
+                              "help": ""
+                            },
+                            {
+                              "name": "CURRENT_AMPL",
+                              "pin": "PA6",
+                              "peripheral": "OPAMP2_VOUT",
+                              "help": ""
+                            }
+                          ],
+                          "ADCVariants": [
+                            {
+                              "name": "SingleWire",
+                              "solutions": [
+                                {
+                                  "ip": [
+                                    "ADC2"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP2_OUT",
+                                      "pin": "PA6",
+                                      "peripheral": "ADC2_IN3",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "SingleShunt_RawCurrents_SingleEnded_InternalGain",
+                  "swVariants": [
+                    {
+                      "name": "SingleOPAMP",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "OPAMP1"
+                          ],
+                          "cost": 10,
+                          "signals": [
+                            {
+                              "name": "CURRENT_SHUNT_P",
+                              "pin": "PA7",
+                              "peripheral": "OPAMP1_VINP",
+                              "help": {
+                                "en": [
+                                  "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101."
+                                ]
+                              }
+                            }
+                          ],
+                          "ADCVariants": [
+                            {
+                              "name": "SingleWire",
+                              "solutions": [
+                                {
+                                  "ip": [
+                                    "ADC1"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP1_OUT",
+                                      "pin": "VPOPAMP1",
+                                      "peripheral": "ADC1_IN_VPOPAMP1",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                },
+                                {
+                                  "ip": [
+                                    "ADC1"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP1_OUT",
+                                      "pin": "PA2",
+                                      "peripheral": "ADC1_IN3",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "ip": [
+                            "OPAMP2"
+                          ],
+                          "cost": 10,
+                          "signals": [
+                            {
+                              "name": "CURRENT_SHUNT_P",
+                              "pin": "PA7",
+                              "peripheral": "OPAMP2_VINP",
+                              "help": {
+                                "en": [
+                                  "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101."
+                                ]
+                              }
+                            }
+                          ],
+                          "ADCVariants": [
+                            {
+                              "name": "SingleWire",
+                              "solutions": [
+                                {
+                                  "ip": [
+                                    "ADC2"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP2_OUT",
+                                      "pin": "VPOPAMP2",
+                                      "peripheral": "ADC2_IN_VPOPAMP2",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                },
+                                {
+                                  "ip": [
+                                    "ADC2"
+                                  ],
+                                  "signals": [
+                                    {
+                                      "name": "OPAMP2_OUT",
+                                      "pin": "PA6",
+                                      "peripheral": "ADC2_IN3",
+                                      "help": ""
+                                    }
+                                  ],
+                                  "cost": 0
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "OverCurrentProtection",
+              "type": "OverCurrentProtection",
+              "hwVariants": [
+                {
+                  "name": "SingleShunt_RawCurrents_Protection_IntRef",
+                  "swVariants": [
+                    {
+                      "name": "IndependentWires",
+                      "independentWires": {
+                        "CURRENT_SHUNT_P": [
+                          {
+                            "ip": "COMP2",
+                            "pin": "PA7",
+                            "peripheral": "COMP2_INP",
+                            "help": {
+                              "en": [
+                                "NOTICE: Please disable the overcurrent protection of Stage 2 to avoid resurce assignment conflict on COMP2. The power stage is already protected by STDRIVE101."
+                              ]
+                            },
+                            "cost": 10
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ProtectionDriver101",
+              "type": "DriverProtection",
+              "hwVariants": [
+                {
+                  "name": "SingleErrorTrigger_FixedReference",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM8"
+                          ],
+                          "signals": [
+                            {
+                              "name": "DP_TRIGGER",
+                              "pin": "PB6",
+                              "peripheral": "TIM8_BKIN2",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "PhaseVoltageGeneration",
+              "type": "PhaseVoltageGeneration",
+              "hwVariants": [
+                {
+                  "swVariants": [
+                    {
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM8"
+                          ],
+                          "signals": [
+                            {
+                              "name": "PWM_CHU_H",
+                              "pin": "PA15",
+                              "peripheral": "TIM8_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHV_H",
+                              "pin": "PB8-BOOT0",
+                              "peripheral": "TIM8_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHW_H",
+                              "pin": "PB9",
+                              "peripheral": "TIM8_CH3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ],
+                      "independentWires": {
+                        "PWM_EN": [
+                          {
+                            "ip": "GPIO",
+                            "pin": "PB7",
+                            "peripheral": "GPIO_Output",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ]
+                      },
+                      "name": "SingleTimerAndGPIOs"
+                    }
+                  ],
+                  "name": "DrivingHighSidesAndOneEnable"
+                },
+                {
+                  "name": "DrivingHighAndLowSides",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM8"
+                          ],
+                          "signals": [
+                            {
+                              "name": "PWM_CHU_H",
+                              "pin": "PA15",
+                              "peripheral": "TIM8_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHV_H",
+                              "pin": "PB8-BOOT0",
+                              "peripheral": "TIM8_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHW_H",
+                              "pin": "PB9",
+                              "peripheral": "TIM8_CH3",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHU_L",
+                              "pin": "PB3",
+                              "peripheral": "TIM8_CH1N",
+                              "help": {
+                                "en": [
+                                  "R15 must be mounted - 0 ohm"
+                                ]
+                              }
+                            },
+                            {
+                              "name": "PWM_CHV_L",
+                              "pin": "PB4",
+                              "peripheral": "TIM8_CH2N",
+                              "help": {
+                                "en": [
+                                  "R16 must be mounted - 0 ohm"
+                                ]
+                              }
+                            },
+                            {
+                              "name": "PWM_CHW_L",
+                              "pin": "PB5",
+                              "peripheral": "TIM8_CH3N",
+                              "help": {
+                                "en": [
+                                  "R17 must be mounted - 0 ohm"
+                                ]
+                              }
+                            }
+                          ],
+                          "cost": 30
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "SpeedAndPositionSensing",
+              "type": "SpeedAndPositionSensing",
+              "hwVariants": [
+                {
+                  "name": "HallEffectSensor",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "HALLSENSOR_H1",
+                              "pin": "PA0",
+                              "peripheral": "TIM2_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H2",
+                              "pin": "PA1",
+                              "peripheral": "TIM2_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H3",
+                              "pin": "PB10",
+                              "peripheral": "TIM2_CH3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "QuadratureEncoderRelative",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "QENC_A",
+                              "pin": "PA0",
+                              "peripheral": "TIM2_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "QENC_B",
+                              "pin": "PA1",
+                              "peripheral": "TIM2_CH2",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "swVariants": [
+                    {
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "QENC_A",
+                              "pin": "PA0",
+                              "peripheral": "TIM2_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "QENC_B",
+                              "pin": "PA1",
+                              "peripheral": "TIM2_CH2",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ],
+                      "independentWires": {
+                        "QENC_Z": [
+                          {
+                            "ip": "GPIO",
+                            "pin": "PB10",
+                            "peripheral": "GPIO_Output",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ]
+                      },
+                      "name": "SingleTimerAndGPIOs"
+                    }
+                  ],
+                  "name": "QuadratureEncoderAbsolute"
+                }
+              ]
+            },
+            {
+              "name": "VBusSensing",
+              "type": "VBusSensing",
+              "hwVariants": [
+                {
+                  "name": "VBusSensing",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "VBUS",
+                              "pin": "PC1",
+                              "peripheral": "ADC1_IN7",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        },
+                        {
+                          "ip": [
+                            "ADC2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "VBUS",
+                              "pin": "PC1",
+                              "peripheral": "ADC2_IN7",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "TemperatureSensing",
+              "type": "TemperatureSensing",
+              "hwVariants": [
+                {
+                  "name": "NTCThermistor",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "TEMPERATURE_NTC",
+                              "pin": "PC2",
+                              "peripheral": "ADC1_IN8",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        },
+                        {
+                          "ip": [
+                            "ADC2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "TEMPERATURE_NTC",
+                              "pin": "PC2",
+                              "peripheral": "ADC2_IN8",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "name": "Potentiometer_M1",
+          "type": "Potentiometer",
+          "hwVariants": [
+            {
+              "name": "Potentiometer",
+              "swVariants": [
+                {
+                  "name": "SingleWire",
+                  "solutions": [
+                    {
+                      "ip": [
+                        "ADC1"
+                      ],
+                      "signals": [
+                        {
+                          "name": "POTENTIOMETER_LEVEL",
+                          "pin": "PC3",
+                          "peripheral": "ADC1_IN9",
+                          "help": ""
+                        }
+                      ],
+                      "cost": 0
+                    },
+                    {
+                      "ip": [
+                        "ADC2"
+                      ],
+                      "signals": [
+                        {
+                          "name": "POTENTIOMETER_LEVEL",
+                          "pin": "PC3",
+                          "peripheral": "ADC2_IN9",
+                          "help": ""
+                        }
+                      ],
+                      "cost": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Potentiometer_M2",
+          "type": "Potentiometer",
+          "hwVariants": [
+            {
+              "name": "Potentiometer",
+              "swVariants": [
+                {
+                  "name": "SingleWire",
+                  "solutions": [
+                    {
+                      "ip": [
+                        "ADC2"
+                      ],
+                      "signals": [
+                        {
+                          "name": "POTENTIOMETER_LEVEL",
+                          "pin": "PA4",
+                          "peripheral": "ADC2_IN17",
+                          "help": ""
+                        }
+                      ],
+                      "cost": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "warnings": [],
+      "info": []
+    },
+    "inverter": {
+      "hardwareFamily": "INVERTER",
+      "id": "EVSPIN32G4-DUAL",
+      "label": "EVSPIN32G4-DUAL",
+      "description": "Dual-motor demonstration board based on STSPIN32G4 and STDRIVE101",
+      "descVersion": 4,
+      "contentVersion": "1.0",
+      "compatibility": [
+        "FOC",
+        "sixStep"
+      ],
+      "status": "success"
+    }
+  },
+  "version": 13,
+  "workBenchVersion": "6.3.0",
+  "workBenchVersionFileCreation": "6.3.0",
+  "details": {
+    "steps": {
+      "speedSensingSel_0": {
+        "mainSensorParams": {
+          "speedSensorMode": "hall"
+        }
+      },
+      "speedSensingSel_1": {
+        "mainSensorParams": {
+          "speedSensorMode": "hall"
+        }
+      }
+    }
+  }
+}
