@@ -102,7 +102,7 @@
 #define DEFAULT_FLUX_COMPONENT_A            0
 
 /**************************    FIRMWARE PROTECTIONS SECTION   *****************/
-#define OV_VOLTAGE_THRESHOLD_V              33 /*!< Over-voltage threshold */
+#define OV_VOLTAGE_THRESHOLD_V              29 /*!< Over-voltage threshold */
 #define UD_VOLTAGE_THRESHOLD_V              10 /*!< Under-voltage threshold */
 #ifdef NOT_IMPLEMENTED
 #define ON_OVER_VOLTAGE                     TURN_OFF_PWM /*!< TURN_OFF_PWM, TURN_ON_R_BRAKE or TURN_ON_LOW_SIDES */
@@ -214,7 +214,7 @@
 
 /**************************    FIRMWARE PROTECTIONS SECTION   *****************/
 
-#define OV_VOLTAGE_THRESHOLD_V2             33 /*!< Over-voltage threshold */
+#define OV_VOLTAGE_THRESHOLD_V2             29 /*!< Over-voltage threshold */
 #define UD_VOLTAGE_THRESHOLD_V2             10 /*!< Under-voltage threshold */
 #ifdef NOT_IMPLEMENTED
 #define ON_OVER_VOLTAGE2                    TURN_OFF_PWM /*!< TURN_OFF_PWM, TURN_ON_R_BRAKE or TURN_ON_LOW_SIDES */
